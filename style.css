@@ -79,8 +79,11 @@ table td {
     background-color: #f8f8f8;
 }
 
-.output-field {
+#table-rendered-updated-html{
     border: 1px solid #ccc;
+}
+
+.output-field {
     padding: 10px;
     border-radius: 4px;
     margin-top: 10px;
@@ -116,7 +119,6 @@ table td {
     text-align: center;
 }
 
-.main-content label,
 .main-content h1,
 .main-content h2 {
     margin-top: 20px;
