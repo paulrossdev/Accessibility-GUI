@@ -79,10 +79,6 @@ table td {
     background-color: #f8f8f8;
 }
 
-#table-rendered-updated-html{
-    border: 1px solid #ccc;
-}
-
 .output-field {
     padding: 10px;
     border-radius: 4px;
@@ -162,6 +158,16 @@ table td {
     margin-top: 10px;
     white-space: pre-line;
     word-wrap: break-word;
+}
+
+#table-rendered-updated-html div{
+    padding: 0px;
+    border-radius: 0px;
+    margin-top: 0px;
+}
+
+.result #table-rendered-updated-html div {
+    border: none;
 }
 
 .home-container {

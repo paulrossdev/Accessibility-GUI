@@ -39,59 +39,66 @@ function convertTableToFlexbox() {
     var table = doc.querySelector('table');
   
     if (table) {
-        var flexContainer = doc.createElement('div');
-        flexContainer.style.display = 'flex';
-        flexContainer.style.flexWrap = 'wrap';
+      var flexContainer = doc.createElement('div');
+      flexContainer.style.display = 'flex';
+      flexContainer.style.flexWrap = 'wrap';
   
-        var tableRows = Array.from(table.rows);
-        var numColumns = tableRows[0].cells.length;
+      var tableRows = Array.from(table.rows);
+      var numColumns = tableRows[0].cells.length;
   
-        tableRows.forEach(function(row) {
-            var flexRow = doc.createElement('div');
-            flexRow.style.display = 'flex';
-            flexRow.style.width = '100%';
+      tableRows.forEach(function(row) {
+        var flexRow = doc.createElement('div');
+        flexRow.style.display = 'flex';
+        flexRow.style.width = '100%';
   
-            var tableCells = Array.from(row.cells);
-            var cellWidth = 100 / numColumns + '%';
+        var tableCells = Array.from(row.cells);
+        var cellWidth = 100 / numColumns + '%';
   
-            tableCells.forEach(function(cell) {
-                var flexCell = doc.createElement('div');
-                flexCell.style.width = cellWidth;
-                flexCell.style.textAlign = 'center';
-                flexCell.style.border = '1px solid black'; // Add border style
-
-                var pTag = doc.createElement('p');
-                pTag.style.padding = paddingSlider.value + 'px';
-                pTag.style.margin = marginSlider.value + 'px';
-                pTag.style.boxSizing = 'border-box';
-                pTag.innerHTML = cell.innerHTML;
-
-                flexCell.appendChild(pTag);
-                flexRow.appendChild(flexCell);
-            });
+        tableCells.forEach(function(cell, cellIndex) {
+          var flexCell = doc.createElement('div');
+          flexCell.style.width = cellWidth;
+          flexCell.style.textAlign = 'center';
   
-            flexContainer.appendChild(flexRow);
+          // Add border to all sides of the cell
+          flexCell.style.border = '1px solid black';
+  
+          // Remove border from the right side if it's not the last cell in the row
+          if (cellIndex != tableCells.length - 1) {
+            flexCell.style.borderRight = 'none';
+          }
+  
+          // Remove border from the bottom if it's not the last row
+          if (row.rowIndex != tableRows.length - 1) {
+            flexCell.style.borderBottom = 'none';
+          }
+  
+          var pTag = doc.createElement('p');
+          pTag.style.padding = paddingSlider.value + 'px';
+          pTag.style.margin = marginSlider.value + 'px';
+          pTag.style.boxSizing = 'border-box';
+          pTag.innerHTML = cell.innerHTML;
+  
+          flexCell.appendChild(pTag);
+          flexRow.appendChild(flexCell);
         });
   
-        table.parentNode.replaceChild(flexContainer, table);
+        flexContainer.appendChild(flexRow);
+      });
   
-        var updatedHtml = doc.body.innerHTML;
+      table.parentNode.replaceChild(flexContainer, table);
   
-        document.getElementById('table-html-output').innerText = htmlInput;
-        document.getElementById('table-render-output').innerHTML = htmlInput;
-        document.getElementById('table-updated-html').innerText = updatedHtml;
-        document.getElementById('table-rendered-updated-html').innerHTML = updatedHtml;
+      var updatedHtml = doc.body.innerHTML;
+  
+      document.getElementById('table-html-output').innerText = htmlInput;
+      document.getElementById('table-render-output').innerHTML = htmlInput;
+      document.getElementById('table-updated-html').innerText = updatedHtml;
+      document.getElementById('table-rendered-updated-html').innerHTML = updatedHtml;
     } else {
-        alert('Invalid input. Please enter a valid table.');
+      alert('Invalid input. Please enter a valid table.');
     }
-}
-
-
-  
+  }
   
 
-
-  
   function resetTableFlexbox() {
     document.getElementById('table-html-input').value = `<table>
     <tr>
@@ -142,22 +149,3 @@ function resetAltTextPage() {
     // Scroll to the top of the page
     window.scrollTo(0, 0);
 }
-
-
-// Attach the functions to the respective buttons on the page
-window.onload = function() {
-    document.getElementById('apply-changes-table-flexbox').onclick = convertTableToFlexbox;
-    document.getElementById('reset-table-flexbox').onclick = resetTableFlexbox;
-};
-
-// Attach the resetPage function to the "Reset" button
-document.getElementById('reset-page').onclick = resetAltTextPage;
-
-
-
-// Attach the functions to the respective buttons on each page
-window.onload = function() {
-    document.getElementById('apply-changes-alt-text').onclick = applyAltTextChanges;
-    document.getElementById('apply-changes-table-flexbox').onclick = convertTableToFlexbox;
-};
-
