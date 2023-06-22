@@ -23,16 +23,16 @@
       <textarea id="html-input" rows="5" class="text-field html-input" placeholder="Enter HTML code"></textarea>
 
       <div class="border-switch-container">
-        <span style="width: 20%;">Add Border</span>
+        <span style="width: 20%;" id="add-border">Add Border</span>
 
-        <span style="width: 20%;">Remove Border</span>
+        <span style="width: 20%;" id="remove-border" class="bold">Remove Border</span>
         <label class="switch">
           <input type="checkbox" id="border-switch">
           <span class="slider"></span>
         </label>
       </div>
 
-      <button id="apply-changes-border">Apply Changes</button>
+      <button id="apply-changes-border" >Apply Changes</button>
 
       <div class="result">
         <h2>Your HTML:</h2>
@@ -52,45 +52,36 @@
   </div>
 
   <script src="/myscript.js"></script>
+
   <script>
-    // Function to apply border changes
-    function applyBorderChanges() {
-      var htmlInput = document.getElementById('html-input').value;
-      var switchButton = document.getElementById('border-switch');
-      var borderValue = switchButton.checked ? 'none' : '1px solid black';
+    // JavaScript code to handle click events
+    var removeBorderElement = document.getElementById('remove-border');
+    var addBorderElement = document.getElementById('add-border');
+    var switchButton = document.getElementById('border-switch');
 
-      var parser = new DOMParser();
-      var doc = parser.parseFromString(htmlInput, 'text/html');
-      var cells = doc.getElementsByTagName('td');
-
-      for (var i = 0; i < cells.length; i++) {
-        cells[i].style.border = borderValue;
+    function applyBorderClasses() {
+      if (switchButton.checked) {
+        removeBorderElement.classList.remove('bold');
+        addBorderElement.classList.add('bold');
+      } else {
+        removeBorderElement.classList.add('bold');
+        addBorderElement.classList.remove('bold');
       }
-
-      var updatedHtml = doc.body.innerHTML;
-
-      // Update output fields
-      document.getElementById('html-output').innerText = htmlInput;
-      document.getElementById('render-output').innerHTML = htmlInput;
-      document.getElementById('updated-html').innerText = updatedHtml;
-      document.getElementById('rendered-updated-html').innerHTML = updatedHtml;
     }
 
-    // Function to reset the Adjust Border page
-    function resetBorderPage() {
-      document.getElementById('html-input').value = '';
-      document.getElementById('html-output').innerText = '';
-      document.getElementById('render-output').innerHTML = '';
-      document.getElementById('updated-html').innerText = '';
-      document.getElementById('rendered-updated-html').innerHTML = '';
-      document.getElementById('border-switch').checked = false;
-    }
+    removeBorderElement.addEventListener('click', function() {
+      switchButton.checked = false;
+      applyBorderClasses();
+    });
 
-    // Attach the applyBorderChanges function to the "Apply Changes" button
-    document.getElementById('apply-changes-border').onclick = applyBorderChanges;
+    addBorderElement.addEventListener('click', function() {
+      switchButton.checked = true;
+      applyBorderClasses();
+    });
 
-    // Attach the resetBorderPage function to the "Reset" button
-    document.getElementById('reset-page').onclick = resetBorderPage;
+    switchButton.addEventListener('change', function() {
+      applyBorderClasses();
+    });
   </script>
 </body>
 </html>
