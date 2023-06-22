@@ -131,6 +131,48 @@ function convertTableToFlexbox() {
     document.getElementById('margin-value').textContent = this.value + 'px';
   });
 
+// Function to apply border changes
+function applyBorderChanges() {
+  var htmlInput = document.getElementById('html-input').value;
+  var switchButton = document.getElementById('border-switch');
+  var shouldRemoveBorder = !switchButton.checked;
+
+  var parser = new DOMParser();
+  var doc = parser.parseFromString(htmlInput, 'text/html');
+  var cells = doc.getElementsByTagName('div');
+
+  for (var i = 0; i < cells.length; i++) {
+    cells[i].style.borderStyle = shouldRemoveBorder ? 'none' : '';
+  }
+
+  var updatedHtml = doc.body.innerHTML;
+
+  // Update output fields
+  document.getElementById('html-output').innerText = htmlInput;
+  document.getElementById('render-output').innerHTML = htmlInput;
+  document.getElementById('updated-html').innerText = updatedHtml;
+  document.getElementById('rendered-updated-html').innerHTML = updatedHtml;
+}
+
+
+
+// Function to reset the Adjust Border page
+function resetBorderPage() {
+  document.getElementById('html-input').value = '';
+  document.getElementById('html-output').innerText = '';
+  document.getElementById('render-output').innerHTML = '';
+  document.getElementById('updated-html').innerText = '';
+  document.getElementById('rendered-updated-html').innerHTML = '';
+  document.getElementById('border-switch').checked = false;
+}
+
+// Attach the applyBorderChanges function to the "Apply Changes" button
+document.getElementById('apply-changes-border').onclick = applyBorderChanges;
+
+// Attach the resetBorderPage function to the "Reset" button
+document.getElementById('reset-page').onclick = resetBorderPage;
+
+
 
 function resetAltTextPage() {
     // Reset the textarea and output fields

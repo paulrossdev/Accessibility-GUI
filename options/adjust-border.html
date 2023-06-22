@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adjust Border</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <nav id="nav-bar">
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/options/alt-text.html">Add Alt Text</a></li>
+      <li><a href="/options/table-to-flexbox.html">Convert Table to Flexbox</a></li>
+      <li><a class="current-page" href="/options/adjust-border.html">Adjust Border</a></li>
+    </ul>
+  </nav>
+  <div class="main-content" id="main-content">
+    <div class="alt-container">
+      <h1>Adjust Border</h1>
+
+      <p class="instructions">Enter HTML code:</p>
+      <textarea id="html-input" rows="5" class="text-field html-input" placeholder="Enter HTML code"></textarea>
+
+      <div class="border-switch-container">
+        <span style="width: 20%;">Add Border</span>
+
+        <span style="width: 20%;">Remove Border</span>
+        <label class="switch">
+          <input type="checkbox" id="border-switch">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <button id="apply-changes-border">Apply Changes</button>
+
+      <div class="result">
+        <h2>Your HTML:</h2>
+        <div id="html-output" class="output-field"></div>
+
+        <h2>Rendered HTML:</h2>
+        <div id="render-output" class="output-field"></div>
+
+        <h2>Updated HTML:</h2>
+        <div id="updated-html" class="output-field"></div>
+
+        <h2>Rendered Updated HTML:</h2>
+        <div id="rendered-updated-html" class="output-field"></div>
+      </div>
+    </div>
+    <button id="reset-page">Reset</button>
+  </div>
+
+  <script src="/myscript.js"></script>
+  <script>
+    // Function to apply border changes
+    function applyBorderChanges() {
+      var htmlInput = document.getElementById('html-input').value;
+      var switchButton = document.getElementById('border-switch');
+      var borderValue = switchButton.checked ? 'none' : '1px solid black';
+
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(htmlInput, 'text/html');
+      var cells = doc.getElementsByTagName('td');
+
+      for (var i = 0; i < cells.length; i++) {
+        cells[i].style.border = borderValue;
+      }
+
+      var updatedHtml = doc.body.innerHTML;
+
+      // Update output fields
+      document.getElementById('html-output').innerText = htmlInput;
+      document.getElementById('render-output').innerHTML = htmlInput;
+      document.getElementById('updated-html').innerText = updatedHtml;
+      document.getElementById('rendered-updated-html').innerHTML = updatedHtml;
+    }
+
+    // Function to reset the Adjust Border page
+    function resetBorderPage() {
+      document.getElementById('html-input').value = '';
+      document.getElementById('html-output').innerText = '';
+      document.getElementById('render-output').innerHTML = '';
+      document.getElementById('updated-html').innerText = '';
+      document.getElementById('rendered-updated-html').innerHTML = '';
+      document.getElementById('border-switch').checked = false;
+    }
+
+    // Attach the applyBorderChanges function to the "Apply Changes" button
+    document.getElementById('apply-changes-border').onclick = applyBorderChanges;
+
+    // Attach the resetBorderPage function to the "Reset" button
+    document.getElementById('reset-page').onclick = resetBorderPage;
+  </script>
+</body>
+</html>
