@@ -98,6 +98,16 @@ function convertTableToFlexbox() {
     }
   }
   
+   // Function to reset the Alt Text page
+   function resetAltTextPage() {
+    document.getElementById('html-input').value = '';
+    document.getElementById('element-id').value = '';
+    document.getElementById('alt-text').value = '';
+    document.getElementById('html-output').innerText = '';
+    document.getElementById('render-output').innerHTML = '';
+    document.getElementById('updated-html').innerText = '';
+    document.getElementById('rendered-updated-html').innerHTML = '';
+  }
 
   function resetTableFlexbox() {
     document.getElementById('table-html-input').value = `<table>
@@ -115,37 +125,94 @@ function convertTableToFlexbox() {
     document.getElementById('table-updated-html').innerText = '';
     document.getElementById('table-rendered-updated-html').innerHTML = '';
   }
-  
-  // Attach the functions to the respective buttons on the page
   window.onload = function() {
-    document.getElementById('apply-changes-table-flexbox').onclick = convertTableToFlexbox;
-    document.getElementById('reset-table-flexbox').onclick = resetTableFlexbox;
-  };
+    // Function to apply border changes
+    function applyBorderChanges() {
+      var htmlInput = document.getElementById('html-input').value;
+      var switchButton = document.getElementById('border-switch');
+      var removeBorder = !switchButton.checked;
   
-  // Update slider values on input change
-  document.getElementById('padding-slider').addEventListener('input', function() {
-    document.getElementById('padding-value').textContent = this.value + 'px';
-  });
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(htmlInput, 'text/html');
+      var elements = doc.querySelectorAll('*');
   
-  document.getElementById('margin-slider').addEventListener('input', function() {
-    document.getElementById('margin-value').textContent = this.value + 'px';
-  });
-
-
-function resetAltTextPage() {
-    // Reset the textarea and output fields
-    document.getElementById('html-input').value = '<div id="sample">This is a sample element.</div>';
-    document.getElementById('html-output').innerText = '';
-    document.getElementById('render-output').innerHTML = '';
-    document.getElementById('updated-html').innerText = '';
-    document.getElementById('rendered-updated-html').innerHTML = '';
-
-    // Clear any error messages or styles
-    var errorMessage = document.querySelector('.error-message');
-    if (errorMessage) {
-        errorMessage.remove();
+      for (var i = 0; i < elements.length; i++) {
+        var element = elements[i];
+        var currentBorderStyle = window.getComputedStyle(element).getPropertyValue('border');
+  
+        if (removeBorder) {
+          if (currentBorderStyle !== 'none') {
+            element.style.border = 'none';
+          }
+        } else {
+          if (currentBorderStyle === 'none') {
+            element.style.border = '1px solid black';
+          }
+        }
+      }
+  
+      var updatedHtml = doc.documentElement.outerHTML;
+  
+      // Update output fields
+      document.getElementById('html-output').innerText = htmlInput;
+      document.getElementById('render-output').innerHTML = htmlInput;
+      document.getElementById('updated-html').innerText = updatedHtml;
+      document.getElementById('rendered-updated-html').innerHTML = updatedHtml;
+    }
+  
+    // Function to reset the Adjust Border page
+    function resetBorderPage() {
+      document.getElementById('html-input').value = '';
+      document.getElementById('html-output').innerText = '';
+      document.getElementById('render-output').innerHTML = '';
+      document.getElementById('updated-html').innerText = '';
+      document.getElementById('rendered-updated-html').innerHTML = '';
+      document.getElementById('border-switch').checked = false;
     }
 
-    // Scroll to the top of the page
-    window.scrollTo(0, 0);
-}
+    
+  
+    // Attach the applyBorderChanges function to the "Apply Changes" button
+    document.getElementById('apply-changes-border').onclick = applyBorderChanges;
+  
+    // Attach the resetBorderPage function to the "Reset" button
+    document.getElementById('reset-page').onclick = resetBorderPage;
+  
+    // Function to apply alt text changes
+    function applyAltTextChanges() {
+      var htmlInput = document.getElementById('html-input').value;
+      var elementId = document.getElementById('element-id').value;
+      var altText = document.getElementById('alt-text').value;
+  
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(htmlInput, 'text/html');
+      var element = doc.getElementById(elementId);
+  
+      if (element) {
+        var altElement = doc.createElement('p');
+        altElement.innerText = altText;
+        altElement.style.position = 'absolute';
+        altElement.style.top = '-1000px';
+        altElement.style.left = '-1000px';
+        element.appendChild(altElement);
+  
+        document.getElementById('html-output').innerText = htmlInput;
+        document.getElementById('render-output').innerHTML = htmlInput;
+  
+        var updatedHtml = element.outerHTML;
+        document.getElementById('updated-html').innerText = updatedHtml;
+        document.getElementById('rendered-updated-html').innerHTML = updatedHtml;
+      } else {
+        alert('Element with provided ID not found in the HTML.');
+      }
+    }
+  
+   
+  
+    // Attach the applyAltTextChanges function to the "Apply Changes" button
+    document.getElementById('apply-changes-alt-text').onclick = applyAltTextChanges;
+  
+    // Attach the resetAltTextPage function to the "Reset" button
+    document.getElementById('reset-alt-text').onclick = resetAltTextPage;
+  };
+  
