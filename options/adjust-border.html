@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adjust Border</title>
-  <link rel="stylesheet" href="../style.css">
-</head>
-<body>
-  <nav id="nav-bar">
-    <ul>
-      <li><a href="/index.html">Home</a></li>
-      <li><a href="/options/alt-text.html">Add Alt Text</a></li>
-      <li><a href="/options/table-to-flexbox.html">Convert Table to Flexbox</a></li>
-      <li><a class="current-page" href="/options/adjust-border.html">Adjust Border</a></li>
-    </ul>
-  </nav>
-  <div class="main-content" id="main-content">
-    <div class="alt-container">
-      <h1>Adjust Border</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adjust Border</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
 
-      <p class="instructions">Enter HTML code:</p>
-      <textarea id="html-input" rows="5" class="text-field html-input" placeholder="Enter HTML code" ><table style="border-collapse: collapse; border: 1px solid black;">
+  <body>
+    <nav id="nav-bar">
+      <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/options/alt-text.html">Add Alt Text</a></li>
+        <li>
+          <a href="/options/table-to-flexbox.html">Convert Table to Flexbox</a>
+        </li>
+        <li>
+          <a class="current-page" href="/options/adjust-border.html"
+            >Adjust Border</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <div class="main-content" id="main-content">
+      <div class="alt-container">
+        <h1>Adjust Border</h1>
+
+        <p class="instructions">Enter HTML code:</p>
+        <textarea
+          id="html-input"
+          rows="5"
+          class="text-field html-input"
+          placeholder="Enter HTML code"
+        >
+<table style="border-collapse: collapse; border: 1px solid black;">
         <tr>
         <th style="border: 1px solid black; padding: 5px;">Header 1</th>
         <th style="border: 1px solid black; padding: 5px;">Header 2</th>
@@ -29,68 +42,77 @@
         <td style="border: 1px solid black; padding: 5px;">Data 1</td>
         <td style="border: 1px solid black; padding: 5px;">Data 2</td>
         </tr>
-        </table></textarea>
+        </table></textarea
+        >
 
-      <div class="border-switch-container">
-        <span style="width: 20%;" id="add-border">Add Border</span>
+        <div class="border-switch-container">
+          <span style="width: 20%" id="add-border">Add Border</span>
 
-        <span style="width: 20%;" id="remove-border" class="bold">Remove Border</span>
-        <label class="switch">
-          <input type="checkbox" id="border-switch">
-          <span class="slider"></span>
-        </label>
+          <span style="width: 20%" id="remove-border" class="bold"
+            >Remove Border</span
+          >
+          <label class="switch">
+            <input type="checkbox" id="border-switch" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <button id="apply-changes-border">Apply Changes</button>
+
+        <div class="result">
+          <h2>Your HTML:</h2>
+          <div id="html-output" class="output-field"></div>
+
+          <h2>Rendered HTML:</h2>
+          <div id="render-output" class="output-field"></div>
+
+          <h2>Updated HTML:</h2>
+          <div id="updated-html" class="output-field"></div>
+
+          <h2>Rendered Updated HTML:</h2>
+          <div id="rendered-updated-html" class="output-field"></div>
+        </div>
       </div>
-
-      <button id="apply-changes-border" >Apply Changes</button>
-
-      <div class="result">
-        <h2>Your HTML:</h2>
-        <div id="html-output" class="output-field"></div>
-
-        <h2>Rendered HTML:</h2>
-        <div id="render-output" class="output-field"></div>
-
-        <h2>Updated HTML:</h2>
-        <div id="updated-html" class="output-field"></div>
-
-        <h2>Rendered Updated HTML:</h2>
-        <div id="rendered-updated-html" class="output-field"></div>
-      </div>
+      <button id="reset-page">Reset</button>
     </div>
-    <button id="reset-page">Reset</button>
-  </div>
 
-  <script src="/myscript.js"></script>
+    <script src="/myscript.js"></script>
 
-  <script>
-    // JavaScript code to handle click events
-    var removeBorderElement = document.getElementById('remove-border');
-    var addBorderElement = document.getElementById('add-border');
-    var switchButton = document.getElementById('border-switch');
+    <script>
+      // JavaScript code to handle click events
+      var removeBorderElement = document.getElementById("remove-border");
+      var addBorderElement = document.getElementById("add-border");
+      var switchButton = document.getElementById("border-switch");
+      var htmlInput = document.getElementById("html-input");
 
-    function applyBorderClasses() {
-      if (switchButton.checked) {
-        removeBorderElement.classList.remove('bold');
-        addBorderElement.classList.add('bold');
-      } else {
-        removeBorderElement.classList.add('bold');
-        addBorderElement.classList.remove('bold');
+
+      function applyBorderClasses() {
+        if (switchButton.checked) {
+          removeBorderElement.classList.remove("bold");
+          addBorderElement.classList.add("bold");
+        } else {
+          removeBorderElement.classList.add("bold");
+          addBorderElement.classList.remove("bold");
+        }
       }
-    }
 
-    removeBorderElement.addEventListener('click', function() {
-      switchButton.checked = false;
-      applyBorderClasses();
-    });
+      htmlInput.addEventListener("focus", function () {
+          this.value = "";
+        });
 
-    addBorderElement.addEventListener('click', function() {
-      switchButton.checked = true;
-      applyBorderClasses();
-    });
+      removeBorderElement.addEventListener("click", function () {
+        switchButton.checked = false;
+        applyBorderClasses();
+      });
 
-    switchButton.addEventListener('change', function() {
-      applyBorderClasses();
-    });
-  </script>
-</body>
+      addBorderElement.addEventListener("click", function () {
+        switchButton.checked = true;
+        applyBorderClasses();
+      });
+
+      switchButton.addEventListener("change", function () {
+        applyBorderClasses();
+      });
+    </script>
+  </body>
 </html>
