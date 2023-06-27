@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table to Grid</title>
+  <link rel="stylesheet" href="../style.css">
+  <!-- Matomo -->
+<script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://paulrossdev.matomo.cloud/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src='//cdn.matomo.cloud/paulrossdev.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <!-- End Matomo Code -->
+  
+</head>
+<body>
+  <nav id="nav-bar">
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/options/alt-text.html">Add Alt Text</a></li>
+      <li>
+        <a href="/options/table-to-flexbox.html">Table to Flexbox</a>
+      </li>
+      <li><a class="current-page" href="/options/table-to-grid.html">Table to Grid</a></li>
+
+      <li><a href="/options/adjust-border.html">Adjust Border</a></li>
+    </ul>
+  </nav>
+  <div class="main-content">
+    <div class="table-to-grid-container">
+      <h1>Table to Grid</h1>
+
+      <p class="instructions">Enter HTML table code:</p>
+      <textarea id="table-input" rows="5" class="text-field" placeholder="Enter HTML table code"><table>
+        <tr>
+            <th>Header 1</th>
+            <th>Header 2</th>
+        </tr>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+        </tr>
+    </table></textarea>
+
+      <button id="convert-table-btn">Convert Table to Grid</button>
+
+      <div class="result">
+        <h2>Your HTML Table:</h2>
+        <div id="table-output" class="output-field"></div>
+
+        <h2>Rendered Table:</h2>
+        <div id="render-table-output" class="output-field"></div>
+
+        <h2>Updated HTML Grid:</h2>
+        <div id="grid-output" class="output-field"></div>
+
+        <h2>Rendered Grid:</h2>
+        <div id="render-grid-output" class="output-field"></div>
+      </div>
+    </div>
+    <button id="reset-page">Reset</button>
+  </div>
+
+  <script src="/myscript.js"></script>
+  <script>
+    // Function to convert table to grid format
+    function convertTableToGrid() {
+
+        
+
+  var tableInput = document.getElementById('table-input').value;
+  var parser = new DOMParser();
+  var doc = parser.parseFromString(tableInput, 'text/html');
+  var table = doc.querySelector('table');
+
+  if (table) {
+    // Create a new container element to hold the grid items
+    var gridContainer = document.createElement('div');
+    gridContainer.setAttribute('style', 'display: table; width: 100%; border-collapse: collapse;');
+
+    // Get all rows of the table
+    var rows = table.rows;
+
+    // Iterate through each row
+    for (var i = 0; i < rows.length; i++) {
+      var row = rows[i];
+
+      // Create a new grid row element
+      var gridRow = document.createElement('div');
+      gridRow.setAttribute('style', 'display: table-row;');
+
+      // Get all cells in the row
+      var cells = row.cells;
+
+      // Iterate through each cell
+      for (var j = 0; j < cells.length; j++) {
+        var cell = cells[j];
+
+        // Create a new grid item element
+        var gridItem = document.createElement('div');
+        gridItem.setAttribute('style', 'display: table-cell; border: 1px solid black; padding: 5px; text-align: center;');
+        gridItem.innerHTML = cell.innerHTML;
+
+        // Append the grid item to the grid row
+        gridRow.appendChild(gridItem);
+      }
+
+      // Append the grid row to the grid container
+      gridContainer.appendChild(gridRow);
+    }
+
+    // Replace the table with the grid container
+    table.parentNode.replaceChild(gridContainer, table);
+
+    // Update output fields
+    var tableOutput = doc.body.innerHTML;
+    var gridOutput = gridContainer.outerHTML;
+
+    document.getElementById('table-output').innerText = tableInput;
+    document.getElementById('render-table-output').innerHTML = tableInput;
+    document.getElementById('grid-output').innerText = gridOutput;
+    document.getElementById('render-grid-output').innerHTML = gridOutput;
+  } else {
+    alert('Invalid input. Please enter a valid HTML table.');
+  }
+}
+
+
+    // Function to reset the Table to Grid page
+    function resetTableToGridPage() {
+      document.getElementById('table-input').value = '';
+      document.getElementById('table-output').innerText = '';
+      document.getElementById('render-table-output').innerHTML = '';
+      document.getElementById('grid-output').innerText = '';
+      document.getElementById('render-grid-output').innerHTML = '';
+    }
+
+    // Attach the convertTableToGrid function to the "Convert Table to Grid" button
+    document.getElementById('convert-table-btn').onclick = convertTableToGrid;
+
+    // Attach the resetTableToGridPage function to the "Reset" button
+    document.getElementById('reset-page').onclick = resetTableToGridPage;
+  </script>
+</body>
+
+<style>
+    #render-grid-output > div {
+    border: none;
+  }
+
+  #render-grid-output pre {
+    margin: 0;
+  }
+</style>
+</html>

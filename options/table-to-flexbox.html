@@ -5,8 +5,24 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6115836208725233"
      crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Convert Table to Flexbox</title>
+    <title>Table to Flexbox</title>
     <link rel="stylesheet" href="../style.css" />
+    <!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://paulrossdev.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='//cdn.matomo.cloud/paulrossdev.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
   </head>
 
   <body>
@@ -16,12 +32,12 @@
         <li><a href="/options/alt-text.html">Add Alt Text</a></li>
         <li>
           <a class="current-page" href="/options/table-to-flexbox.html"
-            >Convert Table to Flexbox</a
+            >Table to Flexbox</a
           >
         </li>
         <li>
-          <a href="/options/table-to-grid.html" class="disabled"
-            >Convert Table to Grid (Coming Soon)</a
+          <a href="/options/table-to-grid.html"
+            >Table to Grid</a
           >
         </li>
         <li>
@@ -33,7 +49,7 @@
     </nav>
     <div class="main-content" id="main-content">
       <div class="alt-container">
-        <h1>Convert Table to Flexbox</h1>
+        <h1>Table to Flexbox</h1>
 
         <p class="instructions">Enter a table:</p>
         <textarea
@@ -108,6 +124,17 @@
 
     <script src="/myscript.js"></script>
     <script>
+
+      // Update slider values on input change
+document.getElementById('padding-slider').addEventListener('input', function() {
+  document.getElementById('padding-value').textContent = this.value + 'px';
+});
+
+document.getElementById('margin-slider').addEventListener('input', function() {
+  document.getElementById('margin-value').textContent = this.value + 'px';
+});
+
+
       window.onload = function () {
         document.getElementById("apply-changes-table-flexbox").onclick =
           convertTableToFlexbox;
@@ -193,6 +220,6 @@
   }
 
   #table-rendered-updated-html pre {
-    margin: 0; /* Added to remove default margin of the <pre> element */
+    margin: 0;
   }
 </style>

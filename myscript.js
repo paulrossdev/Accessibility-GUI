@@ -33,6 +33,14 @@ function convertTableToFlexbox() {
     var marginSlider = document.getElementById('margin-slider');
     var paddingValue = document.getElementById('padding-value');
     var marginValue = document.getElementById('margin-value');
+
+    paddingSlider.addEventListener('input', function() {
+      paddingValue.textContent = this.value + 'px';
+    });
+  
+    marginSlider.addEventListener('input', function() {
+      marginValue.textContent = this.value + 'px';
+    });
   
     var parser = new DOMParser();
     var doc = parser.parseFromString(htmlInput, 'text/html');
@@ -170,6 +178,10 @@ function convertTableToFlexbox() {
       document.getElementById('border-switch').checked = false;
     }
 
+    function clearTableInput() {
+      document.getElementById('table-input').value = '';
+    }
+    document.getElementById('table-input').addEventListener('focus', clearTableInput);
     
   
     // Attach the applyBorderChanges function to the "Apply Changes" button
