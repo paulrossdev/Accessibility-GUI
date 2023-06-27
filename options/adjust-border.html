@@ -99,41 +99,6 @@
 
     <script src="/myscript.js"></script>
 
-    <script>
-      // JavaScript code to handle click events
-      var removeBorderElement = document.getElementById("remove-border");
-      var addBorderElement = document.getElementById("add-border");
-      var switchButton = document.getElementById("border-switch");
-      var htmlInput = document.getElementById("html-input");
-
-
-      function applyBorderClasses() {
-        if (switchButton.checked) {
-          removeBorderElement.classList.remove("bold");
-          addBorderElement.classList.add("bold");
-        } else {
-          removeBorderElement.classList.add("bold");
-          addBorderElement.classList.remove("bold");
-        }
-      }
-
-      htmlInput.addEventListener("focus", function () {
-          this.value = "";
-        });
-
-      removeBorderElement.addEventListener("click", function () {
-        switchButton.checked = false;
-        applyBorderClasses();
-      });
-
-      addBorderElement.addEventListener("click", function () {
-        switchButton.checked = true;
-        applyBorderClasses();
-      });
-
-      switchButton.addEventListener("change", function () {
-        applyBorderClasses();
-      });
-    </script>
+    
   </body>
 </html>

@@ -177,11 +177,6 @@ function convertTableToFlexbox() {
       document.getElementById('rendered-updated-html').innerHTML = '';
       document.getElementById('border-switch').checked = false;
     }
-
-    function clearTableInput() {
-      document.getElementById('table-input').value = '';
-    }
-    document.getElementById('table-input').addEventListener('focus', clearTableInput);
     
   
     // Attach the applyBorderChanges function to the "Apply Changes" button
@@ -218,7 +213,41 @@ function convertTableToFlexbox() {
         alert('Element with provided ID not found in the HTML.');
       }
     }
-  
+
+      // JavaScript code to handle click events
+      var removeBorderElement = document.getElementById("remove-border");
+      var addBorderElement = document.getElementById("add-border");
+      var switchButton = document.getElementById("border-switch");
+      var htmlInput = document.getElementById("html-input");
+
+
+      function applyBorderClasses() {
+        if (switchButton.checked) {
+          removeBorderElement.classList.remove("bold");
+          addBorderElement.classList.add("bold");
+        } else {
+          removeBorderElement.classList.add("bold");
+          addBorderElement.classList.remove("bold");
+        }
+      }
+
+      htmlInput.addEventListener("focus", function () {
+          this.value = "";
+        });
+
+      removeBorderElement.addEventListener("click", function () {
+        switchButton.checked = false;
+        applyBorderClasses();
+      });
+
+      addBorderElement.addEventListener("click", function () {
+        switchButton.checked = true;
+        applyBorderClasses();
+      });
+
+      switchButton.addEventListener("change", function () {
+        applyBorderClasses();
+      });
    
   
     // Attach the applyAltTextChanges function to the "Apply Changes" button
