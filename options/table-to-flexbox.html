@@ -72,10 +72,7 @@
         >
 
         <div style="display: flex; justify-content: space-around">
-          <div
-            class="padding-slider"
-            style="display: flex; align-items: center"
-          >
+          <div class="padding-slider" style="display: flex; align-items: center">
             <label for="padding-value">Padding:</label>
             <input
               type="range"
@@ -87,6 +84,14 @@
               style="margin-top: 0px"
             />
             <span id="padding-value">5px</span>
+          </div>
+          <div class="text-justify-container" style="display: flex; align-items: center">
+            <label for="text-justify">Text Justify:</label>
+            <select id="text-justify" style="margin-top: 0px">
+              <option value="left">Left</option>
+              <option value="center" selected>Center</option>
+              <option value="right">Right</option>
+            </select>
           </div>
           <div class="margin-slider" style="display: flex; align-items: center">
             <label for="margin-value">Margin:</label>
@@ -101,7 +106,9 @@
             />
             <span id="margin-value">5px</span>
           </div>
+          
         </div>
+        
 
         <button id="apply-changes-table-flexbox">Apply Changes</button>
 
@@ -222,4 +229,16 @@ document.getElementById('margin-slider').addEventListener('input', function() {
   #table-rendered-updated-html pre {
     margin: 0;
   }
+
+
+.text-justify-container label {
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.text-justify-container select {
+  padding: 5px;
+  border-radius: 4px;
+}
+
 </style>

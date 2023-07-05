@@ -53,6 +53,7 @@ function convertTableToFlexbox() {
   
       var tableRows = Array.from(table.rows);
       var numColumns = tableRows[0].cells.length;
+      var textJustify = document.getElementById('text-justify').value;
   
       tableRows.forEach(function(row) {
         var flexRow = doc.createElement('div');
@@ -65,7 +66,8 @@ function convertTableToFlexbox() {
         tableCells.forEach(function(cell, cellIndex) {
           var flexCell = doc.createElement('div');
           flexCell.style.width = cellWidth;
-          flexCell.style.textAlign = 'center';
+          flexCell.style.textAlign = textJustify; // Apply the selected text justification
+
   
           // Add border to all sides of the cell
           flexCell.style.border = '1px solid black';
