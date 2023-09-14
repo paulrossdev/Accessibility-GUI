@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Over Text</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      /* Custom CSS for this page */
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      form {
+        border: 1px solid #ccc;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+
+      label {
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="url"],
+      input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      #preview {
+        margin-top: 20px;
+      }
+
+      #generated-html {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="nav-bar">
+      <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/options/alt-text.html">Add Alt Text</a></li>
+        <li><a href="/options/table-to-grid.html">Table to Grid</a></li>
+        <li><a href="/options/adjust-border.html">Adjust Border</a></li>
+        <li>
+            <a class="current-page" href="/options/image-over-text.html"
+              >Image Over Text</a
+            >
+          </li>
+      </ul>
+    </nav>
+    <div class="main-content container">
+      <h1>Image Over Text</h1>
+      <p>Generate HTML code with images above text.</p>
+      <form id="image-text-form">
+        <label for="numImages">Number of Images (1-3):</label>
+        <input
+          type="number"
+          id="numImages"
+          min="1"
+          max="3"
+          value="1"
+          required
+        />
+        <br />
+        <label for="beforeText">Before Text:</label>
+        <input type="text" id="beforeText" required />
+        <br />
+        <label for="imageText1">Image Text:</label>
+        <input type="text" id="imageText1" required />
+        <br />
+        <label for="image1Url">Image URL:</label>
+        <input type="url" id="image1Url" required />
+        <br />
+        <div id="additionalImages"></div>
+        <br />
+        <label for="afterText">After Text:</label>
+        <input type="text" id="afterText" required />
+        <br />
+        <button type="submit">Generate HTML</button>
+        <button type="reset" id="resetForm">Reset</button>
+      </form>
+      <div id="preview"></div>
+      <div id="generated-html">
+        <h2>Generated HTML:</h2>
+        <pre></pre>
+        <button id="copyToClipboard">Copy to Clipboard</button>
+      </div>
+    </div>
+    <script src="../imageOverText.js"></script>
+  </body>
+</html>

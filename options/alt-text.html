@@ -2,27 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6115836208725233"
-     crossorigin="anonymous"></script>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6115836208725233"
+      crossorigin="anonymous"
+    ></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Alt Text</title>
     <link rel="stylesheet" href="../style.css" />
     <!-- Matomo -->
-<script>
-  var _paq = window._paq = window._paq || [];
-  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="https://paulrossdev.matomo.cloud/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.async=true; g.src='//cdn.matomo.cloud/paulrossdev.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- End Matomo Code -->
-
+    <script>
+      var _paq = (window._paq = window._paq || []);
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(["trackPageView"]);
+      _paq.push(["enableLinkTracking"]);
+      (function () {
+        var u = "https://paulrossdev.matomo.cloud/";
+        _paq.push(["setTrackerUrl", u + "matomo.php"]);
+        _paq.push(["setSiteId", "1"]);
+        var d = document,
+          g = d.createElement("script"),
+          s = d.getElementsByTagName("script")[0];
+        g.async = true;
+        g.src = "//cdn.matomo.cloud/paulrossdev.matomo.cloud/matomo.js";
+        s.parentNode.insertBefore(g, s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
   </head>
 
   <body>
@@ -36,13 +42,14 @@
           <a href="/options/table-to-flexbox.html">Table to Flexbox</a>
         </li>
         <li>
-          <a href="/options/table-to-grid.html"
-            >Table to Grid</a
-          >
+          <a href="/options/table-to-grid.html">Table to Grid</a>
         </li>
         <li>
-          <a href="/options/adjust-border.html"
-            >Adjust Border</a
+          <a href="/options/adjust-border.html">Adjust Border</a>
+        </li>
+        <li>
+          <a href="/options/image-over-text.html"
+            >Image Over Text</a
           >
         </li>
       </ul>
@@ -93,11 +100,11 @@
           applyAltTextChanges;
         document.getElementById("reset-page").onclick = resetAltTextPage;
       };
-      var HtmlInput = document.getElementById('html-input');
+      var HtmlInput = document.getElementById("html-input");
 
-HtmlInput.addEventListener('focus', function() {
-  this.value = '';
-});
+      HtmlInput.addEventListener("focus", function () {
+        this.value = "";
+      });
     </script>
   </body>
 </html>
