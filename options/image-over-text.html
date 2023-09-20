@@ -17,6 +17,7 @@
         border: 1px solid #ccc;
         padding: 20px;
         background-color: #f9f9f9;
+        border-radius: 16px;
       }
 
       label {
@@ -46,10 +47,19 @@
 
       #preview {
         margin-top: 20px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        background-color: #ccc;
+        border-radius: 16px;
       }
 
       #generated-html {
         margin-top: 20px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        background-color: #ccc;
+        border-radius: 16px;
+        max-width: 100%;
       }
     </style>
   </head>
@@ -67,10 +77,10 @@
           </li>
       </ul>
     </nav>
-    <div class="main-content container">
+    <div class="main-content container" style="margin-top: 13em">
       <h1>Image Over Text</h1>
       <p>Generate HTML code with images above text.</p>
-      <form id="image-text-form">
+      <form id="image-text-form" style="background-color: #ffffff7d;">
         <label for="numImages">Number of Images (1-3):</label>
         <input
           type="number"
@@ -98,10 +108,10 @@
         <button type="submit">Generate HTML</button>
         <button type="reset" id="resetForm">Reset</button>
       </form>
-      <div id="preview"></div>
+      <div id="preview">Preview will appear here.</div>
       <div id="generated-html">
         <h2>Generated HTML:</h2>
-        <pre></pre>
+        <pre dtyle="max-width:100%;"></pre>
         <button id="copyToClipboard">Copy to Clipboard</button>
       </div>
     </div>

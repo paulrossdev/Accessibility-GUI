@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     generatedHtmlPre.textContent = html;
   }
   function resetForm() {
-    previewDiv.innerHTML = "";
+    previewDiv.innerHTML = "Preview will appear here.";
     generatedHtmlPre.textContent = "";
     additionalImagesDiv.innerHTML = "";
     numImagesInput.value = 1;
